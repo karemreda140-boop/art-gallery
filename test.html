@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Art Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #111;
+        color: #f5f5f5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* NAV */
+
+      .header {
+        border-bottom: 1px solid #333;
+        padding: 16px 40px;
+      }
+
+      .nav-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-weight: 600;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        font-size: 14px;
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .btn-solid {
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid #f5f5f5;
+        background: #f5f5f5;
+        color: #111;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      /* MAIN LAYOUT */
+
+      .main-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 16px 60px;
+      }
+
+      /* ABOUT */
+
+      .about-layout {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        margin-bottom: 48px;
+      }
+
+      .about-text h1 {
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+
+      .about-text h2 {
+        font-size: 16px;
+        font-weight: 400;
+        color: #aaaaaa;
+        margin-bottom: 16px;
+      }
+
+      .about-text p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #dddddd;
+        margin-bottom: 10px;
+      }
+
+      .about-image-box {
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 3 / 4;
+        background: #222;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .about-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* CONTACT */
+
+      .contact-section h2 {
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+      }
+
+      input,
+      textarea {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 10px 12px;
+        color: #f5f5f5;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        background: #f5f5f5;
+        color: #111;
+        cursor: pointer;
+        font: inherit;
+        margin-top: 8px;
+      }
+
+      /* STUDENTS WORKS */
+
+      .page-title {
+        text-align: center;
+        font-size: 36px;
+        margin: 60px 0 32px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .gallery-item {
+        background: #222;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* FOOTER */
+
+      footer {
+        border-top: 1px solid #333;
+        padding: 24px 40px 32px;
+        font-size: 12px;
+        color: #bbbbbb;
+      }
+
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+
+      .footer-columns {
+        display: flex;
+        gap: 40px;
+      }
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
+        .about-layout {
+          flex-direction: column;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .header {
+          padding-inline: 16px;
+        }
+
+        footer {
+          padding-inline: 16px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-text h1,
+        .page-title {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <header class="header">
+      <div class="nav-bar">
+        <div class="logo">Art Gallery</div>
+
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#students-works">Students Works</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#">Login In</a>
+          <button class="btn-solid">Sign In</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-wrapper">
+      <!-- ABOUT SECTION -->
+      <section id="about" class="about-layout">
+        <div class="about-text">
+          <h1>About</h1>
+          <h2>Subheading for description or instructions</h2>
+
+          <p>
+            Welcome to Art Touch, a digital gallery created to celebrate art and
+            showcase unique paintings from various styles and creative
+            perspectives. Our goal is to bring together a diverse collection of
+            artworks that reflect talent and individuality.
+          </p>
+          <p>
+            We believe that every painting carries a story, and our mission is
+            to provide a space where these stories can be seen and appreciated.
+            Whether you're an art lover, a collector, or simply exploring, Art
+            Touch offers an inspiring experience and an easy way to connect with
+            us if you wish to purchase or inquire about any artwork.
+          </p>
+          <p>Thank you for being part of our artistic journey.</p>
+        </div>
+
+        <div class="about-image-box">
+          <!-- صورة المعرض الرئيسية -->
+          <img src="images/photo1.jpeg" alt="Art exhibition" />
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="contact-section">
+        <h2>Contact me</h2>
+
+        <form>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="first-name">First name</label>
+              <input id="first-name" type="text" placeholder="kareem" />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last name</label>
+              <input id="last-name" type="text" placeholder="rezk" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="xxx@gmail.net"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your message</label>
+            <textarea
+              id="message"
+              placeholder="Enter your question or message"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </section>
+
+      <!-- STUDENTS WORKS SECTION -->
+      <h1 id="students-works" class="page-title">Our students Works</h1>
+
+      <section class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/photo2.jpeg" alt="Student work 1" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo3.jpeg" alt="Student work 2" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo4.jpeg" alt="Student work 3" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo5.jpeg" alt="Student work 4" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo6.jpeg" alt="Student work 5" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo7.jpeg" alt="Student work 6" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo8.jpeg" alt="Student work 7" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo9.jpeg" alt="Student work 8" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/photo10.jpeg" alt="Student work 9" />
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div>Site name</div>
+
+        <div class="footer-columns">
+          <div class="footer-column">
+            <strong>Topic</strong>
+            <span>Page</span>
+            <span>Page</span>
+            <span>Page</span>
+          </div>
+          <div class="footer-column">
+            <strong>Topic</strong>
+            <span>Page</span>
+            <span>Page</span>
+            <span>Page</span>
+          </div>
+          <div class="footer-column">
+            <strong>Topic</strong>
+            <span>Page</span>
+            <span>Page</span>
+            <span>Page</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
