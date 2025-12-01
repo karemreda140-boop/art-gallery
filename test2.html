@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StreetWear X - متجر تيشرتات</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+          circle at top left,
+          #2d2a4a 0,
+          #111 40%,
+          #050509 100%
+        );
+        color: #f5f5f5;
+        line-height: 1.6;
+      }
+
+      .page-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1150px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(14px);
+        background: linear-gradient(
+          to bottom,
+          rgba(5, 5, 10, 0.9),
+          rgba(5, 5, 10, 0.6)
+        );
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .logo span {
+        background: linear-gradient(90deg, #ff6f61, #ffcc33);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #e0e0e0;
+        opacity: 0.8;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      .pill {
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.8rem;
+        opacity: 0.85;
+      }
+
+      .hero {
+        padding: 2.75rem 0 2.25rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1.1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero-kicker {
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.7rem;
+      }
+
+      .hero-title span {
+        background: linear-gradient(90deg, #ff6f61, #ffcc33);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .hero-copy {
+        font-size: 0.98rem;
+        color: #c2c2c2;
+        margin-bottom: 1.4rem;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        border-radius: 999px;
+        padding: 0.25rem 0.7rem;
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff6f61, #ffcc33);
+        color: #050509;
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      }
+
+      .btn-ghost {
+        background-color: transparent;
+        color: #f5f5f5;
+        border-radius: 999px;
+        padding: 0.6rem 1.1rem;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        font-size: 0.9rem;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .hero-note {
+        font-size: 0.78rem;
+        opacity: 0.7;
+      }
+
+      .hero-visual {
+        border-radius: 1.7rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 1.1rem;
+        background: radial-gradient(
+          circle at top,
+          #2e2a52 0,
+          #131320 45%,
+          #050509 90%
+        );
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.85);
+      }
+
+      .hero-visual-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.9rem;
+        font-size: 0.78rem;
+        opacity: 0.85;
+      }
+
+      .hero-visual-body {
+        border-radius: 1.2rem;
+        padding: 1rem;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(0, 0, 0, 0.85)
+        );
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .mock-tee {
+        border-radius: 1rem;
+        background: radial-gradient(
+          circle at top,
+          #ffcc33 0,
+          #ff6f61 45%,
+          #050509 100%
+        );
+        min-height: 150px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #050509;
+        padding-bottom: 0.65rem;
+      }
+
+      .mock-sidebar {
+        font-size: 0.8rem;
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .mock-line {
+        border-radius: 999px;
+        height: 0.35rem;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+      }
+
+      .mock-pill {
+        border-radius: 999px;
+        padding: 0.25rem 0.55rem;
+        font-size: 0.7rem;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: inline-block;
+      }
+
+      section {
+        padding: 2.3rem 0 2rem;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+      }
+
+      .section-sub {
+        font-size: 0.85rem;
+        color: #bdbdbd;
+        max-width: 360px;
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        font-size: 0.75rem;
+        border-radius: 999px;
+        padding: 0.25rem 0.7rem;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        opacity: 0.8;
+      }
+
+      .chip.active {
+        background: linear-gradient(135deg, #ff6f61, #ffcc33);
+        color: #050509;
+        border-color: transparent;
+        opacity: 1;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+      }
+
+      .card {
+        background: radial-gradient(
+          circle at top,
+          rgba(255, 255, 255, 0.04),
+          rgba(0, 0, 0, 0.9)
+        );
+        border-radius: 1.1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 210px;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+      }
+
+      .card-title {
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .card-tag {
+        font-size: 0.7rem;
+        border-radius: 999px;
+        padding: 0.25rem 0.5rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .card-body {
+        font-size: 0.8rem;
+        color: #d0d0d0;
+        margin-bottom: 0.7rem;
+      }
+
+      .meta-row {
+        font-size: 0.78rem;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.4rem;
+        opacity: 0.85;
+      }
+
+      .price {
+        font-weight: 700;
+      }
+
+      .price span {
+        font-size: 0.7rem;
+        opacity: 0.8;
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.78rem;
+      }
+
+      .badge {
+        font-size: 0.75rem;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .cta-row a {
+        font-size: 0.78rem;
+        text-decoration: none;
+        opacity: 0.9;
+      }
+
+      .cta-row a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+
+      .bottom-section {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 1.4rem;
+        margin-top: 1.5rem;
+      }
+
+      .selling-points {
+        display: grid;
+        gap: 0.7rem;
+        font-size: 0.82rem;
+      }
+
+      .point {
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+      }
+
+      .point-bullet {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff6f61, #ffcc33);
+        margin-top: 0.25rem;
+      }
+
+      .conversion-box {
+        border-radius: 1rem;
+        padding: 1rem;
+        background: radial-gradient(
+          circle at top,
+          rgba(255, 255, 255, 0.06),
+          rgba(0, 0, 0, 0.9)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        font-size: 0.82rem;
+      }
+
+      .conversion-title {
+        font-size: 0.96rem;
+        margin-bottom: 0.4rem;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 1.3rem 0 1.8rem;
+        font-size: 0.8rem;
+        text-align: center;
+        color: #9e9e9e;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .bottom-section {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.6rem;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-title {
+          font-size: 1.8rem;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="container nav">
+          <div class="logo">StreetWear <span>X</span></div>
+          <div class="nav-right">
+            <div class="nav-links">
+              <a href="#shop">الكتالوج</a>
+              <a href="#why-us">Why Us</a>
+            </div>
+            <div class="pill">Demo Storefront</div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="container hero-grid">
+            <div>
+              <div class="hero-kicker">TEES · HOODIES · STREET STYLE</div>
+              <h1 class="hero-title">
+                براند <span>StreetWear X</span> للتيشرتات
+              </h1>
+              <p class="hero-copy">
+                واجهة متجر غامقة، مودرن، معمولة للـ streetwear brands اللي عايزة
+                شكل aggressive يبيع أكتر أونلاين. ركّزنا على الـ cards، الـ
+                tags، ومعلومات الـ margin لكل منتج.
+              </p>
+              <div class="hero-tags">
+                <div class="tag">Look & Feel براند عالمي</div>
+                <div class="tag">Positioning واضح للفئة المستهدفة</div>
+                <div class="tag">تصميم optimized للموبايل</div>
+              </div>
+              <div class="hero-actions">
+                <a href="#shop" class="btn-primary">اعرض كتالوج التيشرتات</a>
+                <a href="#why-us" class="btn-ghost">اعرف استراتيجية البيع</a>
+              </div>
+              <p class="hero-note">
+                * دي صفحة Demo تقدر تستخدم أفكارها لما تبني المتجر الحقيقي على
+                Shopify / WooCommerce أو أي منصة.
+              </p>
+            </div>
+
+            <aside class="hero-visual">
+              <div class="hero-visual-header">
+                <span>Live Preview – Hero Product</span>
+                <span>CTR↑ 18%</span>
+              </div>
+              <div class="hero-visual-body">
+                <div class="mock-tee">Hero Tee Card</div>
+                <div class="mock-sidebar">
+                  <div class="mock-line"></div>
+                  <div class="mock-line" style="width: 70%"></div>
+                  <span class="mock-pill">Limited Drop · 200 pcs</span>
+                  <span class="mock-pill">Free shipping over 799 ج.م</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="shop">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">كتالوج التيشرتات</h2>
+              </div>
+              <div class="section-sub">
+                کارت المنتج هنا بيحكي القصة: اسم، Style، سعر، Margin، و CTA صغير
+                يوجّه العميل لخطوة الشراء.
+              </div>
+            </div>
+
+            <div class="filter-row">
+              <div class="chip active">All</div>
+              <div class="chip">Oversized</div>
+              <div class="chip">Graphic</div>
+              <div class="chip">Basic</div>
+              <div class="chip">Drop 01</div>
+            </div>
+
+            <div class="product-grid" style="margin-top: 1.2rem">
+              <article class="card">
+                <div>
+                  <div class="card-header">
+                    <h3 class="card-title">Night Shift Tee</h3>
+                    <span class="card-tag">Drop 01</span>
+                  </div>
+                  <p class="card-body">
+                    تيشرت Oversized باللون الأسود مع طباعة Reflective ليلي،
+                    معمول للجيم والـ street style.
+                  </p>
+                  <div class="meta-row">
+                    <span>تكلفة التصنيع: 140 ج.م</span>
+                    <span class="price">349 ج.م <span>/ Retail</span></span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="badge">Margin ~60%</span>
+                  <div class="cta-row">
+                    <a href="#">عرض التفاصيل</a>
+                    <a href="#">أضف لسلة الشراء</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div>
+                  <div class="card-header">
+                    <h3 class="card-title">Sunset Gradient Tee</h3>
+                    <span class="card-tag">New</span>
+                  </div>
+                  <p class="card-body">
+                    قماش قطن + ليكرا خفيف، درجات ألوان Sunset، targeting الشباب
+                    من 16–24 سنة.
+                  </p>
+                  <div class="meta-row">
+                    <span>تكلفة التصنيع: 160 ج.م</span>
+                    <span class="price">379 ج.م <span>/ Retail</span></span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="badge">Pre-launch Campaign</span>
+                  <div class="cta-row">
+                    <a href="#">Landing Page</a>
+                    <a href="#">Track Conversions</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card">
+                <div>
+                  <div class="card-header">
+                    <h3 class="card-title">Minimal Logo Tee</h3>
+                    <span class="card-tag">Core</span>
+                  </div>
+                  <p class="card-body">
+                    Basic تيشرت بلوجو صغير على الصدر، perfect كمنتج دخول للبراند
+                    (Entry Product).
+                  </p>
+                  <div class="meta-row">
+                    <span>تكلفة التصنيع: 120 ج.م</span>
+                    <span class="price">249 ج.م <span>/ Retail</span></span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="badge">High Volume SKU</span>
+                  <div class="cta-row">
+                    <a href="#">تحليل المبيعات</a>
+                    <a href="#">إدارة المخزون</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div id="why-us" class="bottom-section">
+              <div class="selling-points">
+                <div class="point">
+                  <div class="point-bullet"></div>
+                  <div>
+                    تصميم غامق بيحط الفوكس على المنتجات، مش على الخلفية، فبيزود
+                    Attention على الكروت.
+                  </div>
+                </div>
+                <div class="point">
+                  <div class="point-bullet"></div>
+                  <div>
+                    إظهار تكلفة التصنيع مع الـ Retail price مفيد لصاحب البراند
+                    وهو بيحسب الـ profit.
+                  </div>
+                </div>
+                <div class="point">
+                  <div class="point-bullet"></div>
+                  <div>
+                    Tags زي “Drop 01” و “High Volume SKU” بتدي إحساس إن البراند
+                    Structured وعنده Collections.
+                  </div>
+                </div>
+                <div class="point">
+                  <div class="point-bullet"></div>
+                  <div>
+                    Chips للفلاتر (Oversized / Graphic / Basic) بتسهّل الـ
+                    navigation وسط الكوليكشن.
+                  </div>
+                </div>
+              </div>
+
+              <aside class="conversion-box">
+                <div class="conversion-title">Conversion Mindset</div>
+                <p>
+                  الصفحة دي مش بس شكل؛ معمولة بمنطق Conversion: CTA واضح، تسلسل
+                  معلومات منطقي من Story → Product → Margin → Action. لما تبني
+                  المتجر الحقيقي، تقدر تحفظ نفس الـ flow ده على Shopify أو أي
+                  Platform تانية.
+                </p>
+              </aside>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="container">
+          © 2025 StreetWear X Demo – واجهة غامقة لتجربة شكل متجر تيشرتات ستريت
+          وير.
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>Art Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Tees - متجر تيشرتات</title>
     <style>
       * {
         box-sizing: border-box;
@@ -14,389 +14,433 @@
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        background: #111;
-        color: #f5f5f5;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f5f5f5 60%,
+          #e8f0ff 100%
+        );
+        color: #222;
+        line-height: 1.6;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
+      header {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
       }
 
-      /* NAV */
-
-      .header {
-        border-bottom: 1px solid #333;
-        padding: 16px 40px;
-      }
-
-      .nav-bar {
+      .container {
+        width: 100%;
         max-width: 1100px;
         margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 0.75rem 0;
       }
 
       .logo {
-        font-weight: 600;
+        font-weight: 800;
+        font-size: 1.4rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #222;
+      }
+
+      .logo span {
+        color: #1976d2;
       }
 
       .nav-links {
         display: flex;
-        gap: 24px;
-        font-size: 14px;
+        gap: 1.5rem;
+        font-size: 0.95rem;
       }
 
-      .nav-actions {
-        display: flex;
-        gap: 12px;
-        font-size: 14px;
+      .nav-links a {
+        text-decoration: none;
+        color: #444;
       }
 
-      .btn-solid {
-        padding: 8px 16px;
-        border-radius: 999px;
-        border: 1px solid #f5f5f5;
-        background: #f5f5f5;
-        color: #111;
-        cursor: pointer;
-        font: inherit;
+      .nav-links a:hover {
+        color: #1976d2;
       }
 
-      /* MAIN LAYOUT */
-
-      .main-wrapper {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 40px 16px 60px;
+      .hero {
+        padding: 3rem 0 2.5rem;
       }
 
-      /* ABOUT */
-
-      .about-layout {
-        display: flex;
-        gap: 40px;
-        align-items: flex-start;
-        margin-bottom: 48px;
-      }
-
-      .about-text h1 {
-        font-size: 40px;
-        margin-bottom: 12px;
-      }
-
-      .about-text h2 {
-        font-size: 16px;
-        font-weight: 400;
-        color: #aaaaaa;
-        margin-bottom: 16px;
-      }
-
-      .about-text p {
-        font-size: 14px;
-        line-height: 1.6;
-        color: #dddddd;
-        margin-bottom: 10px;
-      }
-
-      .about-image-box {
-        width: 100%;
-        max-width: 360px;
-        aspect-ratio: 3 / 4;
-        background: #222;
-        border-radius: 12px;
-        overflow: hidden;
-      }
-
-      .about-image-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* CONTACT */
-
-      .contact-section h2 {
-        font-size: 22px;
-        margin-bottom: 16px;
-      }
-
-      .form-grid {
+      .hero-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-        margin-bottom: 16px;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 2rem;
+        align-items: center;
       }
 
-      .form-group {
+      .hero-title {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-title span {
+        color: #1976d2;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-kpis {
         display: flex;
-        flex-direction: column;
-        gap: 6px;
-        font-size: 13px;
-      }
-
-      input,
-      textarea {
-        background: #111;
-        border: 1px solid #333;
-        border-radius: 6px;
-        padding: 10px 12px;
-        color: #f5f5f5;
-        font: inherit;
-      }
-
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-
-      .btn-submit {
-        width: 100%;
-        padding: 10px;
-        border-radius: 6px;
-        border: none;
-        background: #f5f5f5;
-        color: #111;
-        cursor: pointer;
-        font: inherit;
-        margin-top: 8px;
-      }
-
-      /* STUDENTS WORKS */
-
-      .page-title {
-        text-align: center;
-        font-size: 36px;
-        margin: 60px 0 32px;
-      }
-
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 24px;
-      }
-
-      .gallery-item {
-        background: #222;
-        border-radius: 12px;
-        overflow: hidden;
-      }
-
-      .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* FOOTER */
-
-      footer {
-        border-top: 1px solid #333;
-        padding: 24px 40px 32px;
-        font-size: 12px;
-        color: #bbbbbb;
-      }
-
-      .footer-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        gap: 32px;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
         flex-wrap: wrap;
       }
 
-      .footer-columns {
-        display: flex;
-        gap: 40px;
+      .kpi {
+        background-color: #fff;
+        padding: 0.6rem 0.9rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        font-size: 0.9rem;
       }
 
-      .footer-column {
+      .kpi strong {
+        display: block;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.7rem 1.2rem;
+        border-radius: 999px;
+        border: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          background-color 0.15s ease, color 0.15s ease;
+      }
+
+      .btn-primary {
+        background-color: #1976d2;
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(25, 118, 210, 0.35);
+        margin-inline-end: 0.5rem;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(25, 118, 210, 0.4);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: #1976d2;
+        border: 1px solid #1976d2;
+      }
+
+      .btn-secondary:hover {
+        background-color: #1976d2;
+        color: #fff;
+      }
+
+      .hero-banner {
+        background-color: #ffffffcc;
+        border-radius: 1.25rem;
+        padding: 1.75rem 1.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        text-align: center;
+      }
+
+      .hero-tagline {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-highlight {
+        display: inline-block;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        background-color: #e3f2fd;
+        color: #0d47a1;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-banner img {
+        width: 90%;
+        border-radius: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-subtitle {
+        color: #666;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .product-card {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 0.9rem;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        justify-content: space-between;
       }
 
-      /* RESPONSIVE */
+      .product-image {
+        background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        border-radius: 0.8rem;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        color: #0d47a1;
+        margin-bottom: 0.75rem;
+      }
+
+      .product-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .product-meta {
+        font-size: 0.8rem;
+        color: #777;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.4rem;
+      }
+
+      .price {
+        font-weight: 700;
+        color: #1976d2;
+      }
+
+      .badge {
+        background-color: #fff3cd;
+        color: #856404;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+      }
+
+      .benefits {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .benefit {
+        background-color: #ffffffaa;
+        padding: 0.9rem;
+        border-radius: 0.9rem;
+        border: 1px dashed #bbdefb;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        padding: 1.5rem 0 2rem;
+        font-size: 0.85rem;
+        color: #777;
+        text-align: center;
+      }
 
       @media (max-width: 900px) {
-        .about-layout {
-          flex-direction: column;
+        .hero-grid {
+          grid-template-columns: 1fr;
         }
 
-        .gallery-grid {
+        .product-grid,
+        .benefits {
           grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .header {
-          padding-inline: 16px;
-        }
-
-        footer {
-          padding-inline: 16px;
         }
       }
 
       @media (max-width: 600px) {
-        .form-grid {
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+
+        .product-grid,
+        .benefits {
           grid-template-columns: 1fr;
         }
 
-        .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .about-text h1,
-        .page-title {
-          font-size: 28px;
+        .hero-title {
+          font-size: 1.8rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- NAV -->
-    <header class="header">
-      <div class="nav-bar">
-        <div class="logo">Art Gallery</div>
-
+    <header>
+      <div class="container nav">
+        <div class="logo">Urban<span>Tees</span></div>
         <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#students-works">Students Works</a>
+          <a href="#products">المنتجات</a>
+          <a href="#benefits">مميزاتنا</a>
+          <a href="#contact">تواصل</a>
         </nav>
-
-        <div class="nav-actions">
-          <a href="#">Login In</a>
-          <button class="btn-solid">Sign In</button>
-        </div>
       </div>
     </header>
 
-    <main class="main-wrapper">
-      <!-- ABOUT SECTION -->
-      <section id="about" class="about-layout">
-        <div class="about-text">
-          <h1>About</h1>
-          <h2>Subheading for description or instructions</h2>
-
-          <p>
-            Welcome to Art Touch, a digital gallery created to celebrate art and
-            showcase unique paintings from various styles and creative
-            perspectives. Our goal is to bring together a diverse collection of
-            artworks that reflect talent and individuality.
-          </p>
-          <p>
-            We believe that every painting carries a story, and our mission is
-            to provide a space where these stories can be seen and appreciated.
-            Whether you're an art lover, a collector, or simply exploring, Art
-            Touch offers an inspiring experience and an easy way to connect with
-            us if you wish to purchase or inquire about any artwork.
-          </p>
-          <p>Thank you for being part of our artistic journey.</p>
-        </div>
-
-        <div class="about-image-box">
-          <!-- صورة المعرض الرئيسية -->
-          <img src="images/photo1.jpeg" alt="Art exhibition" />
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <h1 class="hero-title">
+              اطلق براند <span>التيشرتات</span> بتاعك أونلاين
+            </h1>
+            <p class="hero-subtitle">
+              متجر جاهز يعرض التيشرتات بتاعتك بجودة عالية، عشان تزيد المبيعات
+              وتظهر قدام العملاء بشكل بروفيشنال.
+            </p>
+            <div class="hero-kpis">
+              <div class="kpi">
+                <strong>+120</strong>
+                تصميم تيشرت جاهز للعرض
+              </div>
+              <div class="kpi">
+                <strong>48 ساعة</strong>
+                تجهيز الأوردر وشحنه
+              </div>
+              <div class="kpi">
+                <strong>+4.8</strong>
+                تقييم متوسط من العملاء
+              </div>
+            </div>
+            <div>
+              <a href="#products" class="btn-primary">ابدأ التصفح الآن</a>
+              <a href="#contact" class="btn-secondary">احجز مكالمة مبيعات</a>
+            </div>
+          </div>
+          <aside class="hero-banner">
+            <div class="hero-highlight">لوحة عرض براند الملابس</div>
+            <p class="hero-tagline">
+              جرّب شكل الكتالوج قبل ما تطلق المتجر الحقيقي.
+            </p>
+            <div class="product-image">معاينة تيشرتات براند UrbanTees</div>
+          </aside>
         </div>
       </section>
 
-      <!-- CONTACT SECTION -->
-      <section class="contact-section">
-        <h2>Contact me</h2>
+      <section id="products">
+        <div class="container">
+          <h2 class="section-title">أفضل التيشرتات مبيعاً</h2>
+          <p class="section-subtitle">
+            جزء بسيط من الكوليكشن عشان توضح شكل كروت المنتجات في المتجر.
+          </p>
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-image">تيشرت Basic أبيض</div>
+              <h3 class="product-name">Basic White Tee</h3>
+              <p class="product-meta">قماش قطن 100٪ · مقاسات من S لـ XXL</p>
+              <div class="product-bottom">
+                <span class="price">249 ج.م</span>
+                <span class="badge">الأكثر مبيعاً</span>
+              </div>
+            </article>
 
-        <form>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="first-name">First name</label>
-              <input id="first-name" type="text" placeholder="kareem" />
-            </div>
-            <div class="form-group">
-              <label for="last-name">Last name</label>
-              <input id="last-name" type="text" placeholder="rezk" />
-            </div>
+            <article class="product-card">
+              <div class="product-image">تيشرت Oversized أسود</div>
+              <h3 class="product-name">Oversized Black Tee</h3>
+              <p class="product-meta">قصّة واسعة · مناسب للشارع والچيم</p>
+              <div class="product-bottom">
+                <span class="price">299 ج.م</span>
+                <span class="badge">متبقي كميات قليلة</span>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-image">تيشرت Graphic مطبوع</div>
+              <h3 class="product-name">Graphic Print Tee</h3>
+              <p class="product-meta">طباعة مقاومة للغسيل · تصميم براندك</p>
+              <div class="product-bottom">
+                <span class="price">329 ج.م</span>
+                <span class="badge">إصدار محدود</span>
+              </div>
+            </article>
           </div>
-
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="xxx@gmail.net"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="message">Your message</label>
-            <textarea
-              id="message"
-              placeholder="Enter your question or message"
-            ></textarea>
-          </div>
-
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
+        </div>
       </section>
 
-      <!-- STUDENTS WORKS SECTION -->
-      <h1 id="students-works" class="page-title">Our students Works</h1>
+      <section id="benefits">
+        <div class="container">
+          <h2 class="section-title">ليه المتجر ده يبيع أكتر؟</h2>
+          <p class="section-subtitle">
+            شوية نقاط value واضحة بتخلي تجربة الشراء أسهل وأسرع للعميل.
+          </p>
+          <div class="benefits">
+            <div class="benefit">
+              صور منتجات نظيفة بخلفية بسيطة توضح التفاصيل.
+            </div>
+            <div class="benefit">سعر واضح وبجانبُه Badge يوضح حالة المنتج.</div>
+            <div class="benefit">
+              Layout من ٣ أعمدة يعرض منتجات كتير بدون زحمة.
+            </div>
+            <div class="benefit">
+              Call To Action واضح في القسم الأول للصفحة.
+            </div>
+            <div class="benefit">أرقام KPIs في الهيدر تبني ثقة سريعة.</div>
+            <div class="benefit">
+              تصميم فاتح ومريح للعين يدعم الـ brand trust.
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section class="gallery-grid">
-        <div class="gallery-item">
-          <img src="images/photo2.jpeg" alt="Student work 1" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo3.jpeg" alt="Student work 2" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo4.jpeg" alt="Student work 3" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo5.jpeg" alt="Student work 4" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo6.jpeg" alt="Student work 5" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo7.jpeg" alt="Student work 6" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo8.jpeg" alt="Student work 7" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo9.jpeg" alt="Student work 8" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/photo10.jpeg" alt="Student work 9" />
+      <section id="contact">
+        <div class="container">
+          <h2 class="section-title">جاهز تطلق براند التيشرتات بتاعك؟</h2>
+          <p class="section-subtitle">
+            ابعت لنا على البريد التجريبي عشان نساعدك تبني المتجر الحقيقي.
+          </p>
+          <p>email@example.com</p>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
-      <div class="footer-inner">
-        <div>Site name</div>
-
-        <div class="footer-columns">
-          <div class="footer-column">
-            <strong>Topic</strong>
-            <span>Page</span>
-            <span>Page</span>
-            <span>Page</span>
-          </div>
-          <div class="footer-column">
-            <strong>Topic</strong>
-            <span>Page</span>
-            <span>Page</span>
-            <span>Page</span>
-          </div>
-          <div class="footer-column">
-            <strong>Topic</strong>
-            <span>Page</span>
-            <span>Page</span>
-            <span>Page</span>
-          </div>
-        </div>
+      <div class="container">
+        © 2025 UrbanTees Demo Store – صفحة واجهة تجريبية لمتجر تيشرتات.
       </div>
     </footer>
   </body>
